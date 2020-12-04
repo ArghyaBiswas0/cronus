@@ -4,11 +4,9 @@ import RPi
 
 class DHT11Result:
     'DHT11 sensor result returned by DHT11.read() method'
-
     ERR_NO_ERROR = 0
     ERR_MISSING_DATA = 1
     ERR_CRC = 2
-
     error_code = ERR_NO_ERROR
     temperature = -1
     humidity = -1
@@ -21,10 +19,8 @@ class DHT11Result:
     def is_valid(self):
         return self.error_code == DHT11Result.ERR_NO_ERROR
 
-
 class DHT11:
     'DHT11 sensor reader class for Raspberry'
-
     __pin = 0
 
     def __init__(self, pin):
@@ -32,16 +28,12 @@ class DHT11:
 
     def read(self):
         RPi.GPIO.setup(self.__pin, RPi.GPIO.OUT)
-
         # send initial high
         self.__send_and_sleep(RPi.GPIO.HIGH, 0.05)
-
         # pull down to low
         self.__send_and_sleep(RPi.GPIO.LOW, 0.02)
-
         # change to input using pull up
         RPi.GPIO.setup(self.__pin, RPi.GPIO.IN, RPi.GPIO.PUD_UP)
-
         # collect data into an array
         data = self.__collect_input()
 
@@ -101,8 +93,8 @@ class DHT11:
 
         state = STATE_INIT_PULL_DOWN
 
-        lengths = [] # will contain the lengths of data pull up periods
-        current_length = 0 # will contain the length of the previous period
+        lengths = []  # will contain the lengths of data pull up periods
+        current_length = 0  # will contain the length of the previous period
 
         for i in range(len(data)):
 
