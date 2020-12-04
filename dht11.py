@@ -1,7 +1,6 @@
 import time
 import RPi
 
-
 class DHT11Result:
     'DHT11 sensor result returned by DHT11.read() method'
     ERR_NO_ERROR = 0
